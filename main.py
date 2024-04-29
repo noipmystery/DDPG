@@ -19,8 +19,9 @@ if __name__ == '__main__':
     parser.add_argument('--sigma', type=float, default=0.2, help='Sigma hyperparameter')
     parser.add_argument('--memory_size', type=int, default=1000000, help='Memory size')
     parser.add_argument('--weight_decay', type=float, default=1e-2, help='Weight decay')
-    parser.add_argument('--total_steps', type=int, default=2000000, help='Total timesteps')
     parser.add_argument('--replay_start_size', type=int, default=10000, help='Replay start')
+    parser.add_argument('--episodes', type=int, default=200, help='Number of episodes')
+    parser.add_argument('--iterations', type=int, default=2000, help='Number of iterations')
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)

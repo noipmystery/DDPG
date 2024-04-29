@@ -35,6 +35,7 @@ class DDPG:
         default = rewards + self.gamma * next_q_values
         q_targets = torch.where(dones, rewards, default).detach()
         q_values = self.critic(states, actions)
+
         critic_loss = torch.mean(F.mse_loss(q_targets, q_values))
         loss = critic_loss.item()
         self.critic_optimizer.zero_grad()

@@ -40,5 +40,11 @@ class ReplayBuffer:
             rewards.append(reward)
             next_states.append(next_state)
             dones.append(done)
-        return (torch.stack(states).to(self.device), torch.tensor(actions).to(self.device), torch.tensor(rewards).to(self.device),
-                torch.stack(next_states).to(self.device), torch.tensor(dones).to(self.device))
+        actions = torch.tensor(actions).to(self.device)
+        actions = torch.unsqueeze(actions, 1).float()
+        rewards = torch.tensor(rewards).to(self.device)
+        rewards = torch.unsqueeze(rewards, 1).float()
+        dones = torch.tensor(dones).to(self.device)
+        dones = torch.unsqueeze(dones, 1)
+        return (torch.stack(states).to(self.device), actions, rewards,
+                torch.stack(next_states).to(self.device), dones)
